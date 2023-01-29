@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var animationAmount = 1.0
+    
     var body: some View {
         Button("Tap me") {
             animationAmount += 1
@@ -19,7 +20,7 @@ struct ContentView: View {
         .clipShape(Circle())
         .scaleEffect(animationAmount)
         .blur(radius: (animationAmount - 1) * 3)
-        .animation(.default, value: animationAmount)
+        .animation(.interpolatingSpring(stiffness: 50, damping: 1).delay(1).repeatForever(autoreverses: true), value: animationAmount)
     }
 }
 
